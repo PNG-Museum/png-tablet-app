@@ -1,9 +1,12 @@
 // This script combines all individual article JSON files into a single articles.json file
+// and generates redirect HTML files based on the article data
 const fs = require('fs');
 const path = require('path');
 
-// Directory containing article files
+// Directory paths
 const dataDir = path.join(__dirname, '..', 'data');
+const redirectDir = path.join(__dirname, '..', 'redirect');
+const scriptsDir = path.join(__dirname);
 
 // Base URL for GitHub Pages
 const githubPagesBaseUrl = 'https://dolphiiiin.github.io/png-tablet-app';
@@ -27,9 +30,39 @@ function getArticleFiles() {
     .map(file => path.join(dataDir, file));
 }
 
-// Main function to build articles.json
-function buildArticlesJson() {
-  console.log('Building articles.json from individual article files...');
+// Function to generate redirect HTML from template
+function generateRedirectHtml(articleId) {
+  // Read the template file
+  const templatePath = path.join(scriptsDir, 'base_article.html');
+  let templateContent = fs.readFileSync(templatePath, 'utf8');
+
+  // Replace placeholders
+  templateContent = templateContent.replace(/{{ARTICLE_ID}}/g, articleId);
+
+  return templateContent;
+}
+
+// Function to generate redirect HTML files for all articles
+function generateRedirectFiles(articles) {
+  console.log('Generating redirect HTML files...');
+
+  // Ensure redirect directory exists
+  if (!fs.existsSync(redirectDir)) {
+    fs.mkdirSync(redirectDir, { recursive: true });
+    console.log(`Created redirect directory: ${redirectDir}`);
+  }
+
+  // Generate redirect files for each article
+  articles.forEach(article => {
+    const redirectFilePath = path.join(redirectDir, `${article.id}.html`);
+    fs.writeFileSync(redirectFilePath, generateRedirectHtml(article.id));
+    console.log(`Generated redirect file: ${article.id}.html`);
+  });
+}
+
+// Main function to build articles.json and redirect HTML files
+function buildArticlesAndRedirects() {
+  console.log('Building articles.json and redirect HTML files from individual article files...');
 
   const articleFiles = getArticleFiles();
   const articles = [];
@@ -59,9 +92,11 @@ function buildArticlesJson() {
   // Write the combined data to articles.json
   const outputPath = path.join(dataDir, 'articles.json');
   fs.writeFileSync(outputPath, JSON.stringify(articles, null, 2));
-
   console.log(`Successfully created/updated articles.json with ${articles.length} articles`);
+
+  // Generate redirect HTML files
+  generateRedirectFiles(articles);
 }
 
 // Execute the main function
-buildArticlesJson();
+buildArticlesAndRedirects();
