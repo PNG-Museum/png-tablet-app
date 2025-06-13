@@ -5,6 +5,9 @@ const path = require('path');
 // Directory containing article files
 const dataDir = path.join(__dirname, '..', 'data');
 
+// Base URL for GitHub Pages
+const githubPagesBaseUrl = 'https://dolphiiiin.github.io/png-tablet-app';
+
 // Function to read and parse JSON file
 function readJsonFile(filePath) {
   try {
@@ -34,7 +37,14 @@ function buildArticlesJson() {
   for (const filePath of articleFiles) {
     const article = readJsonFile(filePath);
     if (article) {
-      articles.push(article);
+      // Modify article structure for articles.json
+      const modifiedArticle = {
+        ...article,
+        redirectBaseUrl: article.redirectUrl, // Store original redirect URL as redirectBaseUrl
+        redirectUrl: `${githubPagesBaseUrl}/redirect/${article.id}.html` // Set redirectUrl to GitHub Pages redirect page
+      };
+
+      articles.push(modifiedArticle);
       console.log(`Added article: ${article.title}`);
     }
   }
