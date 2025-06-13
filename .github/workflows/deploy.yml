@@ -1,10 +1,10 @@
- name: GitHub Pages Deployment
+name: GitHub Pages Deployment
 
 on:
   push:
     branches:
-      - main  # Run workflow on push to main branch
-  workflow_dispatch:  # Allow manual workflow runs
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
