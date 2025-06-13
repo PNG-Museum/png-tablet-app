@@ -12,7 +12,7 @@
                 // メタタグを動的に追加
                 const meta = document.createElement('meta');
                 meta.httpEquiv = 'refresh';
-                meta.content = '0; url=' + redirectUrl;
+                meta.content = '0; url=' + redrectBaseUrl;
                 document.head.appendChild(meta);
                 // リダイレクト実行
                 window.location.href = redirectUrl;

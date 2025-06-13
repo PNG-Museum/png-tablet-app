@@ -15,9 +15,9 @@
                 meta.content = '0; url=' + redirectUrl;
                 document.head.appendChild(meta);
                 // リダイレクト実行
-                window.location.href = redirectUrl;
+                window.location.href = redrectBaseUrl;
                 // リンクテキストも更新
-                document.getElementById('redirect-link').href = redirectUrl;
+                document.getElementById('redirect-link').href = redrectBaseUrl;
             })
             .catch(error => {
                 console.error('リダイレクト情報の取得に失敗しました:', error);
