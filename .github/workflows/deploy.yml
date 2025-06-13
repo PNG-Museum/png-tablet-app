@@ -1,36 +1,36 @@
-name: GitHub Pages デプロイ
+name: GitHub Pages Deployment
 
 on:
   push:
     branches:
-      - main  # メインブランチへのプッシュ時にワークフローを実行
-  workflow_dispatch:  # 手動実行も可能
+      - main  # Run workflow on push to main branch
+  workflow_dispatch:  # Allow manual workflow runs
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: リポジトリのチェックアウト
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: ファイルの存在確認
+      - name: Verify file structure
         run: |
-          echo "リポジトリの内容確認："
+          echo "Repository content:"
           ls -la
-          echo "データディレクトリ内容："
+          echo "Data directory content:"
           ls -la data/
 
-      - name: GitHub Pages へのデプロイ設定
-        uses: actions/configure-pages@v2
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@v3
 
-      - name: GitHub Pages へのデプロイ
-        uses: actions/upload-pages-artifact@v1
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: .  # プロジェクトルートをデプロイ
+          path: .  # Deploy project root
 
-      - name: デプロイの実行
+      - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v1
+        uses: actions/deploy-pages@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
 
