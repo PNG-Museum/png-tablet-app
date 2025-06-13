@@ -1,0 +1,38 @@
+[
+  {
+    "id": "article1",
+    "title": "人工知能の進化と未来",
+    "content": "人工知能（AI）技術は急速に発展し、私たちの日常生活やビジネスに革命をもたらしています。機械学習の進歩により、AIはより複雑なタスクを処理できるようになりました。未来のAI技術がどのように社会を変革するか、注目が集まっています。",
+    "imageUrl": "images/ai-future.jpg",
+    "redirectUrl": "https://example.com/ai-technology"
+  },
+  {
+    "id": "article2",
+    "title": "持続可能なエネルギーの可能性",
+    "content": "再生可能エネルギーの技術革新は、世界のエネルギー需要に対する新たな解決策を提供しています。太陽光、風力、水力などのクリーンエネルギー源は、化石燃料への依存を減らし、環境への影響を最小限に抑えることができます。",
+    "imageUrl": "images/renewable-energy.jpg",
+    "redirectUrl": "https://example.com/sustainable-energy"
+  },
+  {
+    "id": "article3",
+    "title": "モバイルアプリ開発の最新トレンド",
+    "content": "モバイルアプリケーション市場は常に変化しており、開発者は最新のトレンドに対応する必要があります。クロスプラットフォーム開発ツール、AI機能の統合、セキュリティ強化など、2025年のモバイルアプリ開発において重要な要素を解説します。",
+    "imageUrl": "images/app-development.jpg",
+    "redirectUrl": "https://example.com/mobile-app-trends"
+  },
+  {
+    "id": "article4",
+    "title": "健康的な生活習慣のためのガイド",
+    "content": "忙しい現代社会でバランスの取れた生活を送るためのヒントをご紹介します。適切な栄養摂取、定期的な運動、質の高い睡眠など、日常に取り入れやすい健康習慣について解説します。",
+    "imageUrl": "images/healthy-lifestyle.jpg",
+    "redirectUrl": "https://example.com/health-guide"
+  },
+  {
+    "id": "article5",
+    "title": "デジタルマーケティングの最新戦略",
+    "content": "オンラインでのブランド構築と顧客獲得のための効果的なデジタルマーケティング手法を紹介します。ソーシャルメディア活用、コンテンツマーケティング、SEO最適化など、ビジネス成長に欠かせない戦略をご説明します。",
+    "imageUrl": "images/digital-marketing.jpg",
+    "redirectUrl": "https://example.com/marketing-strategies"
+  }
+]
+

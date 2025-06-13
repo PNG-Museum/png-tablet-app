@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            border-bottom: 2px solid #4a90e2;
+            padding-bottom: 10px;
+        }
+        code {
+            background-color: #f5f5f5;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: monospace;
+        }
+        pre {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        .endpoint {
+            background-color: #e9f5ff;
+            border-left: 4px solid #4a90e2;
+            padding: 10px 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>JSON API Documentation</h1>
+
+    <p>このGitHub Pagesサイトは、JSONデータを返すシンプルなAPIエンドポイントとして機能します。</p>
+
+    <h2>利用可能なエンドポイント</h2>
+
+    <div class="endpoint">
+        <h3>全記事の取得</h3>
+        <p><strong>エンドポイント:</strong> <code>/data/articles.json</code></p>
+        <p><strong>メソッド:</strong> GET</p>
+        <p><strong>説明:</strong> 全ての記事データをJSON形式で返します</p>
+        <p><strong>レスポンスの例:</strong></p>
+        <pre>[
+  {
+    "id": "article1",
+    "title": "記事タイトル",
+    "content": "記事本文...",
+    "imageUrl": "画像URL",
+    "redirectUrl": "リダイレクト先URL"
+  },
+  ...
+]</pre>
+    </div>
+
+    <div class="endpoint">
+        <h3>個別記事の取得</h3>
+        <p><strong>エンドポイント:</strong> <code>/data/article1.json</code>, <code>/data/article2.json</code>, etc.</p>
+        <p><strong>メソッド:</strong> GET</p>
+        <p><strong>説明:</strong> 指定したIDの記事データをJSON形式で返します</p>
+        <p><strong>レスポンスの例:</strong></p>
+        <pre>{
+  "id": "article1",
+  "title": "記事タイトル",
+  "content": "記事本文...",
+  "imageUrl": "画像URL",
+  "redirectUrl": "リダイレクト先URL"
+}</pre>
+    </div>
+
+    <h2>リダイレクト機能</h2>
+    <p>各記事には対応するリダイレクトURLがあります：</p>
+    <ul>
+        <li><code>/redirect/article1.html</code> → 記事1のリダイレクト先</li>
+        <li><code>/redirect/article2.html</code> → 記事2のリダイレクト先</li>
+        <li><code>/redirect/article3.html</code> → 記事3のリダイレクト先</li>
+        <li><code>/redirect/article4.html</code> → 記事4のリダイレクト先</li>
+        <li><code>/redirect/article5.html</code> → 記事5のリダイレクト先</li>
+    </ul>
+</body>
+</html>
+
