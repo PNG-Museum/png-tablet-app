@@ -9,7 +9,7 @@ const redirectDir = path.join(__dirname, '..', 'redirect');
 const scriptsDir = path.join(__dirname);
 
 // Base URL for GitHub Pages
-const githubPagesBaseUrl = 'https://dolphiiiin.github.io/png-tablet-app';
+const githubPagesBaseUrl = 'https://png-museum.github.io/png-tablet-app';
 
 // Function to read and parse JSON file
 function readJsonFile(filePath) {
