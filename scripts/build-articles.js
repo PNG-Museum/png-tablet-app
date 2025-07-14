@@ -1,5 +1,5 @@
 // scripts/build-articles.js
-// 記事JSONファイルを結合し、画像URLを完全パスに変換してGitHub Pagesで使用可能にする
+// 記事JSONファイルを結合してGitHub Pagesで使用可能にする
 const fs = require('fs');
 const path = require('path');
 
@@ -41,19 +41,6 @@ function ensureDirectoryExists(dir) {
   }
 }
 
-// 相対画像URLを絶対URLに変換する関数
-function convertToAbsoluteUrl(imageUrl) {
-  if (!imageUrl) return '';
-  
-  // すでに絶対URLの場合はそのまま返す
-  if (imageUrl.startsWith('http://') || imageUrl.startsWith('https://')) {
-    return imageUrl;
-  }
-  
-  // 相対パスをGitHub PagesのURLに変換
-  return `${githubPagesBaseUrl}/${imageUrl}`;
-}
-
 // メイン関数
 function buildArticlesJson() {
   console.log('articles.jsonをビルド中...');
@@ -77,8 +64,8 @@ function buildArticlesJson() {
       // 元のリダイレクトURLを先に保存（重要：上書き前に保存）
       const originalRedirectUrl = article.redirectUrl;
       
-      // 画像URLを絶対URLに変換
-      article.imageUrl = convertToAbsoluteUrl(article.imageUrl);
+      // imageUrlはそのまま保持（変換しない）
+      // article.imageUrl = article.imageUrl;
       
       // リダイレクトURLを追加
       article.redirectUrl = `${githubPagesBaseUrl}/redirect/${article.id}.html`;
@@ -156,13 +143,12 @@ function checkImages(articles) {
   for (const article of articles) {
     if (!article.imageUrl) continue;
     
-    // GitHub Pages URLから相対パスを抽出
-    const imagePath = article.imageUrl.replace(githubPagesBaseUrl + '/', '');
-    const localImagePath = path.join(__dirname, '..', imagePath);
+    // 相対パスをそのまま使用してチェック
+    const localImagePath = path.join(__dirname, '..', article.imageUrl);
     
     if (!fs.existsSync(localImagePath)) {
-      missingImages.add(imagePath);
-      console.warn(`⚠️  画像が見つかりません: ${article.id} - ${imagePath}`);
+      missingImages.add(article.imageUrl);
+      console.warn(`⚠️  画像が見つかりません: ${article.id} - ${article.imageUrl}`);
     }
   }
   
