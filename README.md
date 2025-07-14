@@ -14,6 +14,10 @@
 - 記事4 (article4.json)
     - https://png-museum.github.io/png-tablet-app/data/article4.json
 
+### 画像ファイル
+- パッキング済み画像
+  - https://png-museum.github.io/png-tablet-app/images/packed-articles.png
+
 ## データ構造
 
 ### articles.json
