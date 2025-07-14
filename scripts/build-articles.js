@@ -74,6 +74,9 @@ function buildArticlesJson() {
     const article = readJsonFile(filePath);
     
     if (article) {
+      // 元のリダイレクトURLを先に保存（重要：上書き前に保存）
+      const originalRedirectUrl = article.redirectUrl;
+      
       // 画像URLを絶対URLに変換
       article.imageUrl = convertToAbsoluteUrl(article.imageUrl);
       
@@ -81,8 +84,8 @@ function buildArticlesJson() {
       article.redirectUrl = `${githubPagesBaseUrl}/redirect/${article.id}.html`;
       
       // 元のリダイレクトURLをredirectBaseUrlとして保持
-      if (article.redirectUrl) {
-        article.redirectBaseUrl = article.redirectUrl;
+      if (originalRedirectUrl) {
+        article.redirectBaseUrl = originalRedirectUrl;
       }
       
       articles.push(article);
