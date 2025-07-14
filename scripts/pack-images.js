@@ -7,7 +7,7 @@ const inputDir = path.join(__dirname, '../images');
 const outputDir = path.join(__dirname, '../images');
 const outputFile = path.join(outputDir, 'packed-articles.png');
 
-const canvasSize = 4096;
+const canvasSize = 2048;
 const grid = 2;
 const cellSize = canvasSize / grid;
 
