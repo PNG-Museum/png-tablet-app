@@ -98,8 +98,8 @@ function buildArticlesJson() {
   fs.writeFileSync(outputPath, JSON.stringify(articles, null, 2));
   console.log(`\n${outputPath}を作成しました（${articles.length}件の記事）`);
   
-  // サンプル画像が存在しない場合は作成
-  createSampleImages();
+  // 必要な画像ファイルの存在確認
+  checkImages(articles);
 }
 
 // リダイレクトHTMLを作成する関数
@@ -145,33 +145,28 @@ function createRedirectHtml(article) {
 }
 
 // 画像ファイルの存在を確認する関数
-function checkImages() {
-  const requiredImages = [
-    'ai-future.jpg',
-    'renewable-energy.jpg',
-    'app-development.jpg',
-    'healthy-lifestyle.jpg',
-    'placeholder.jpg'
-  ];
+function checkImages(articles) {
+  console.log('\n画像ファイルを確認中...');
   
-  console.log('\n必要な画像ファイルを確認中...');
+  const missingImages = new Set();
   
-  let missingImages = [];
-  for (const imageName of requiredImages) {
-    const imagePath = path.join(imagesDir, imageName);
+  for (const article of articles) {
+    if (!article.imageUrl) continue;
     
-    if (!fs.existsSync(imagePath)) {
-      missingImages.push(imageName);
-      console.warn(`⚠️  画像が見つかりません: ${imagePath}`);
-    } else {
-      console.log(`✓ 画像が存在します: ${imagePath}`);
+    // GitHub Pages URLから相対パスを抽出
+    const imagePath = article.imageUrl.replace(githubPagesBaseUrl + '/', '');
+    const localImagePath = path.join(__dirname, '..', imagePath);
+    
+    if (!fs.existsSync(localImagePath)) {
+      missingImages.add(imagePath);
+      console.warn(`⚠️  画像が見つかりません: ${article.id} - ${imagePath}`);
     }
   }
   
-  if (missingImages.length > 0) {
-    console.warn('\n以下の画像ファイルをimages/フォルダに配置してください:');
-    missingImages.forEach(img => console.warn(`  - ${img}`));
-    console.warn('\nVRChatで正常に表示するには、PNG形式の画像が必要です。');
+  if (missingImages.size > 0) {
+    console.warn(`\n${missingImages.size}個の画像ファイルが不足しています`);
+  } else {
+    console.log('✓ すべての画像ファイルが存在します');
   }
 }
 
