@@ -1,8 +1,7 @@
 {
   "id": "article1",
   "title": "まずはここから！",
-  "content": "PNGMuseumって？",
-  "imageUrl": "images/ai-future.jpg",
+  "content": "PNGMuseumって？\nPNGmuseumの公式サイトを見てみよう！",
+  "imageUrl": "images/PNGOfficialLogo.png",
   "redirectUrl": "https://sites.google.com/view/pngmuseum"
 }
-
