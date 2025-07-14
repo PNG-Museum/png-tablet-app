@@ -12,8 +12,7 @@ const grid = 2;
 const cellSize = canvasSize / grid;
 
 async function packImages() {
-    let y = 0;
-// dataディレクトリ内の.jsonファイル名を取得
+    // dataディレクトリ内の.jsonファイル名を取得
     const jsonFiles = fs.readdirSync(dataDir)
         .filter(f => f.endsWith('.json') && f.startsWith('article') && !(f === 'articles.json'))
 
