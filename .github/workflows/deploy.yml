@@ -18,6 +18,11 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Install dependencies
+        run: |
+          echo "Installing dependencies"
+          npm install
+
       - name: Build combined articles.json
         run: |
           echo "Building combined articles.json file"
