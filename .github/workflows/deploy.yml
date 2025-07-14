@@ -23,6 +23,11 @@ jobs:
           echo "Building combined articles.json file"
           node scripts/build-articles.js
 
+      - name: Build packed image
+        run: |
+          echo "Building packed images"
+          node scripts/pack-images.js
+
       - name: Verify file structure
         run: |
           echo "Repository content:"
